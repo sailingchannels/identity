@@ -1,2 +1,5 @@
 node_modules
 npm-debug.log
+dev.sh
+test.sh
+client_id.json

@@ -1,14 +1,13 @@
 {
 	"name": "sailing-channels-identity",
 	"description": "Identity service for sailing channels",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/sailingchannels/identity.git"
 	},
 	"scripts": {
-		"start": "cross-env NODE_ENV=development node src/index.js",
-		"start:production": "cross-env NODE_ENV=production node src/index.js"
+		"start": "node src/index.js"
 	},
 	"dependencies": {
 		"async": "^1.4.2",

@@ -46,7 +46,7 @@ global.tag = tag;
 	});
 
 	app.get("/", (req, res) => {
-		return res.end("sailing-channels.com Identity-Server v" + package.version);
+		return res.end("sailing-channels.com Identity-Service v" + package.version);
 	})
 
 	// OAUTH2CALLBACK
