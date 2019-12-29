@@ -7,6 +7,7 @@ const mongodb = require("mongodb");
 const youtube = require("youtube-api");
 const setGlobals = require("./globals");
 const package = require("../package.json");
+var cors = require("cors");
 
 const argv = require("./argv");
 const port = require("./port");
@@ -36,13 +37,28 @@ global.tag = tag;
 		next();
 	});
 
+	// CORS
+	var whitelist = ["http://localhost:4000", "https://sailing-channels.com"]
+	var corsOptions = {
+		origin: function (origin, callback) {
+			if (whitelist.indexOf(origin) !== -1) {
+				callback(null, true)
+			} else {
+				callback(new Error('Not allowed by CORS'))
+			}
+		},
+		credentials: true
+	};
+
+	app.use(cors(corsOptions));
+
 	const CREDENTIALS = jsonfile.readFileSync("client_id.json");
 	global.oauth = youtube.authenticate({
 		type: "oauth",
 		client_id: CREDENTIALS.web.client_id,
 		client_secret: CREDENTIALS.web.client_secret,
 		redirect_url:
-			tag === "dev" ? CREDENTIALS.web.redirect_uris[1] : CREDENTIALS.web.redirect_uris[0]
+			tag === "dev" ? CREDENTIALS.web.redirect_uris[1] : CREDENTIALS.web.redirect_uris[2]
 	});
 
 	app.get("/", (req, res) => {
@@ -50,6 +66,7 @@ global.tag = tag;
 	})
 
 	// OAUTH2CALLBACK
+	app.get("/oauth2", auth.oauth2);
 	app.get("/oauth2callback", auth.oauth2callback);
 
 	// LOGOUT

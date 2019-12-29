@@ -1,7 +1,7 @@
 {
 	"name": "sailing-channels-identity",
 	"description": "Identity service for sailing channels",
-	"version": "1.0.2",
+	"version": "1.0.4",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/sailingchannels/identity.git"
@@ -15,6 +15,7 @@
 		"colors": "^1.1.2",
 		"compression": "^1.6.0",
 		"cookie-parser": "1.4.0",
+		"cors": "^2.8.5",
 		"express": "^4.13.3",
 		"html-minifier": "^1.0.1",
 		"ip": "1.1.5",
