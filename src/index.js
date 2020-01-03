@@ -38,13 +38,13 @@ global.tag = tag;
 	});
 
 	// CORS
-	var whitelist = ["http://localhost:4000", "https://sailing-channels.com"]
+	var whitelist = ["http://localhost:4000", "https://sailing-channels.com"];
 	var corsOptions = {
-		origin: function (origin, callback) {
+		origin: function(origin, callback) {
 			if (whitelist.indexOf(origin) !== -1) {
-				callback(null, true)
+				callback(null, true);
 			} else {
-				callback(new Error('Not allowed by CORS'))
+				callback(new Error("Not allowed by CORS"));
 			}
 		},
 		credentials: true
@@ -63,7 +63,7 @@ global.tag = tag;
 
 	app.get("/", (req, res) => {
 		return res.end("sailing-channels.com Identity-Service v" + package.version);
-	})
+	});
 
 	// OAUTH2CALLBACK
 	app.get("/oauth2", auth.oauth2);
@@ -83,7 +83,10 @@ global.tag = tag;
 	var mongodbHost = process.env.MONGODB || "mongodb://localhost:27017";
 
 	// mongodb connect
-	const db = await mongodb.connect(mongodbHost + "/" + mongodbDatabaseName);
+	const db = await mongodb.connect(mongodbHost + "/" + mongodbDatabaseName, {
+		reconnectTries: Number.MAX_VALUE,
+		reconnectInterval: 1000
+	});
 
 	// set collection globals
 	setGlobals(db);
