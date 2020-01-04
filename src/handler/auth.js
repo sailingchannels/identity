@@ -7,24 +7,34 @@ module.exports = {
 	logout: function(req, res) {
 		res.clearCookie("token");
 
-		const redirectUrl = global.tag !== "dev" ? "sailing-channels.com" : "localhost"
+		const redirectUrl =
+			global.tag !== "dev" ? "https://sailing-channels.com" : "http://localhost:3000";
 		return res.redirect(301, redirectUrl);
 	},
 
 	// OAUTH2
 	oauth2: function(req, res) {
-		var redirect_to = global.oauth.generateAuthUrl({
+		const redirect_url =
+			global.tag === "dev"
+				? global.credentials.web.redirect_uris[1]
+				: global.credentials.web.redirect_uris[2];
+
+		/*var redirect_to = global.oauth.generateAuthUrl({
 			access_type: "offline",
 			scope: ["https://www.googleapis.com/auth/youtube.force-ssl"],
-			approval_prompt: "force"
-		});
+			approval_prompt: "force",
+			redirect_url: redirect_url
+		});*/
 
-		return res.redirect(301, redirect_to);
+		const redirect_to = `https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.force-ssl&approval_prompt=force&response_type=code&client_id=${global.credentials.web.client_id}&redirect_uri=${redirect_url}`;
+
+		console.log(redirect_to);
+
+		return res.redirect(redirect_to);
 	},
 
 	// OAUTH2CALLBACK
 	oauth2callback: function(req, res) {
-
 		// get a token
 		global.oauth.getToken(req.query.code, function(err, credentials) {
 			if (err) {
@@ -83,7 +93,10 @@ module.exports = {
 						});
 					}
 
-					const redirectUrl = global.tag !== "dev" ? "https://sailing-channels.com" : "http://localhost:4000";
+					const redirectUrl =
+						global.tag !== "dev"
+							? "https://sailing-channels.com"
+							: "http://localhost:4000";
 					return res.redirect(301, redirectUrl);
 				}
 			);

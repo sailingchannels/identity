@@ -49,6 +49,7 @@ global.tag = tag;
 			if (whitelist.indexOf(origin) !== -1) {
 				callback(null, true);
 			} else {
+				console.log("⚠️ rejected cors origin", origin);
 				callback(new Error("Not allowed by CORS"));
 			}
 		},
@@ -58,6 +59,8 @@ global.tag = tag;
 	app.use(cors(corsOptions));
 
 	const CREDENTIALS = jsonfile.readFileSync("client_id.json");
+	global.credentials = CREDENTIALS;
+
 	const oauthConfig = {
 		type: "oauth",
 		client_id: CREDENTIALS.web.client_id,
@@ -65,6 +68,7 @@ global.tag = tag;
 		redirect_url:
 			tag === "dev" ? CREDENTIALS.web.redirect_uris[1] : CREDENTIALS.web.redirect_uris[2]
 	};
+
 	global.oauth = youtube.authenticate(oauthConfig);
 
 	console.log("TAG", tag);
