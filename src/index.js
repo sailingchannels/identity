@@ -38,7 +38,12 @@ global.tag = tag;
 	});
 
 	// CORS
-	var whitelist = ["http://localhost:4000", "https://sailing-channels.com"];
+	var whitelist = [
+		"http://localhost:4000",
+		"https://sailing-channels.com",
+		"https://v2.sailing-channels.com",
+		undefined
+	];
 	var corsOptions = {
 		origin: function(origin, callback) {
 			if (whitelist.indexOf(origin) !== -1) {
@@ -53,13 +58,17 @@ global.tag = tag;
 	app.use(cors(corsOptions));
 
 	const CREDENTIALS = jsonfile.readFileSync("client_id.json");
-	global.oauth = youtube.authenticate({
+	const oauthConfig = {
 		type: "oauth",
 		client_id: CREDENTIALS.web.client_id,
 		client_secret: CREDENTIALS.web.client_secret,
 		redirect_url:
 			tag === "dev" ? CREDENTIALS.web.redirect_uris[1] : CREDENTIALS.web.redirect_uris[2]
-	});
+	};
+	global.oauth = youtube.authenticate(oauthConfig);
+
+	console.log("TAG", tag);
+	console.log("OAUTH", oauthConfig);
 
 	app.get("/", (req, res) => {
 		return res.end("sailing-channels.com Identity-Service v" + package.version);
