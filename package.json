@@ -20,7 +20,7 @@
 		"html-minifier": "^1.0.1",
 		"ip": "1.1.5",
 		"js-cookie": "^2.2.0",
-		"jsonfile": "^2.2.3",
+		"jsonfile": "^6.1.0",
 		"jsonwebtoken": "^8.5.1",
 		"minimist": "^1.2.3",
 		"moment": "2.22.2",
