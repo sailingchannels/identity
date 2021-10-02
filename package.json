@@ -26,7 +26,7 @@
 		"moment": "2.22.2",
 		"mongodb": "2.0.48",
 		"request": "^2.88.2",
-		"youtube-api": "^1.4.0"
+		"youtube-api": "^3.0.1"
 	},
 	"devDependencies": {
 		"cross-env": "^5.1.6",
