@@ -25,7 +25,7 @@
 		"minimist": "^1.2.3",
 		"moment": "2.22.2",
 		"mongodb": "2.0.48",
-		"request": "^2.65.0",
+		"request": "^2.88.2",
 		"youtube-api": "^1.4.0"
 	},
 	"devDependencies": {
