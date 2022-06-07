@@ -10,7 +10,7 @@
 		"start": "node src/index.js"
 	},
 	"dependencies": {
-		"async": "^1.4.2",
+		"async": "^3.2.4",
 		"body-parser": "^1.14.1",
 		"colors": "^1.1.2",
 		"compression": "^1.6.0",
