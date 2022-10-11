@@ -22,7 +22,7 @@
 		"js-cookie": "^2.2.0",
 		"jsonfile": "^2.2.3",
 		"jsonwebtoken": "^8.5.1",
-		"minimist": "^1.2.3",
+		"minimist": "^1.2.7",
 		"moment": "2.22.2",
 		"mongodb": "2.0.48",
 		"request": "^2.88.2",
