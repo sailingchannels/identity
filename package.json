@@ -16,7 +16,7 @@
 		"compression": "^1.6.0",
 		"cookie-parser": "1.4.0",
 		"cors": "^2.8.5",
-		"express": "^4.13.3",
+		"express": "^4.17.3",
 		"html-minifier": "^1.0.1",
 		"ip": "1.1.5",
 		"js-cookie": "^2.2.0",
