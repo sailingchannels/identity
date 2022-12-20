@@ -24,7 +24,7 @@
 		"jsonwebtoken": "^8.5.1",
 		"minimist": "^1.2.3",
 		"moment": "2.22.2",
-		"mongodb": "2.0.48",
+		"mongodb": "4.13.0",
 		"request": "^2.88.2",
 		"youtube-api": "^1.4.0"
 	},
